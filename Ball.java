@@ -8,7 +8,8 @@ public class Ball {
 	GeneralPath ball;
 	PlayField pField;
 
-	int ballRadius, xCoord, yCoord;
+	int ballRadius;
+	double xCoord, yCoord;
 
 	int angle;
 	double velocity;
@@ -18,11 +19,11 @@ public class Ball {
 	}
 
 	public int getX() {
-		return xCoord;
+		return ( int )xCoord;
 	}
 
 	public int getY() {
-		return yCoord;
+		return ( int )yCoord;
 	}
 
 	public int getRadius() {
@@ -38,11 +39,11 @@ public class Ball {
 	}
 
 	public void setX( int x ) {
-		xCoord = x;
+		xCoord = ( double )x;
 	}
 
 	public void setY( int y ) {
-		yCoord = y;
+		yCoord = ( double )y;
 	}
 
 	public void setRadius( int r ) {
@@ -63,18 +64,18 @@ public class Ball {
 
 	private void calculateCoords() {
 
-		if ( (xCoord-ballRadius) < pField.getLeftBound() ) {
-			xCoord = pField.getLeftBound()+ballRadius;
+		if ( (xCoord-( double )ballRadius) < pField.getLeftBound() ) {
+			xCoord = pField.getLeftBound()+( double )ballRadius;
 			angle = (540-angle)%360;
 		}
 
-		if ( (xCoord+ballRadius) > pField.getRightBound() ) {
-			xCoord = pField.getRightBound()-ballRadius;
+		if ( (xCoord+( double )ballRadius) > pField.getRightBound() ) {
+			xCoord = pField.getRightBound()-( double )ballRadius;
 			angle = (540-angle)%360;
 		}
 
-		xCoord += Math.round( velocity*Math.cos(angle*Math.PI/180) );
-		yCoord -= Math.round( velocity*Math.sin(angle*Math.PI/180) );
+		xCoord += velocity*Math.cos(angle*Math.PI/180);
+		yCoord -= velocity*Math.sin(angle*Math.PI/180);
 	}
 
 	public Shape getBall() {
